@@ -1,0 +1,14 @@
+tensorflow-gpu
+numpy
+opencv-python==3.4.2.16
+lxml
+tqdm
+flask
+seaborn
+pillow
+sklearn
+flask_pymongo
+flask_cors
+tensorflow-addons
+tf2-yolov4
+Keras
