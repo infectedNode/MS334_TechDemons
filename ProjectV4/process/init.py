@@ -1,6 +1,6 @@
 import tensorflow as tf
-from tf2_yolov4.model import YOLOv4
-from tf2_yolov4.anchors import YOLOV4_ANCHORS
+from process.v4.model import YOLOv4
+from process.v4.anchors import YOLOV4_ANCHORS
 classes_path = './process/data/labels/coco.names'
 classes_path2 = './process/data/labels/cocoorig.names'
 weights_path = './process/weights/yolov4_custom.h5'
