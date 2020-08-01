@@ -125,7 +125,6 @@ def color(img, sides):
 # ./static/videos/output.avi
 def getTarget(videos_path, videos_filename, target, caseID, client):
 
-    # output = "./static/videos/{}/output.avi".format(caseID)
     status = 0
     record = []
     videoID = []
@@ -235,11 +234,13 @@ def getTarget(videos_path, videos_filename, target, caseID, client):
 
         vid = cv2.VideoCapture(vid_path)
 
+        output = "./static/videos/{}/output/{}.avi".format(caseID,video.split(".")[0])
+
         vid_fps = int(vid.get(cv2.CAP_PROP_FPS))
-        # width = int(vid.get(cv2.CAP_PROP_FRAME_WIDTH))
-        # height = int(vid.get(cv2.CAP_PROP_FRAME_HEIGHT))
-        # codec = cv2.VideoWriter_fourcc(*'XVID')
-        # out = cv2.VideoWriter(output, codec, fps, (width, height))
+        width = int(vid.get(cv2.CAP_PROP_FRAME_WIDTH))
+        height = int(vid.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        codec = cv2.VideoWriter_fourcc(*'XVID')
+        out = cv2.VideoWriter(output, codec, vid_fps, (width, height))
         
         fps = 0.0
         count = 0
@@ -334,9 +335,9 @@ def getTarget(videos_path, videos_filename, target, caseID, client):
                     best_bag_index = i
         
             if(not score == -1):  # got the bag with best match
-                # best_bag_box = bags[best_bag_index]['box']
-                # img = draw_output(img, best_bag_box)
-                skip_frame = vid_fpm - frames_track
+                best_bag_box = bags[best_bag_index]['box']
+                img = draw_output(img, best_bag_box)
+                # skip_frame = vid_fpm - frames_track
                 curr_year, curr_month, curr_day, curr_hour, curr_min = currTime(int((frames_count/vid_fps)/60))
 
                 found = 0
@@ -449,7 +450,7 @@ def getTarget(videos_path, videos_filename, target, caseID, client):
             # fps  = ( fps + (1./(time.time()-t1)) ) / 2
 
             # print("FPS: " + str(fps))
-            # out.write(img)
+            out.write(img)
 
         videos_count += 1
         status = int((videos_count/total_videos)*100)
