@@ -1,0 +1,11 @@
+tensorflow-gpu
+numpy
+opencv-python==4.1.1.26
+lxml
+tqdm
+flask
+seaborn
+pillow
+sklearn
+flask_pymongo
+flask_cors

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis | SIH</title>
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="./../../config/style.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    
+    <section class="nav">
+        <div class="box"><p class="head">Baggage Detector Platform</p></div>
+        <div class="box right"><p class="refresh">Refresh</p></div>
+        <div class="box right"><p class="case_name"></p></div>
+    </section>
+
+    <section class="gmap">
+        <h2 class="head">Tracked Location</h2>
+        <div class="google-map">
+            <div id="map"></div>
+        </div>
+    </section>
+
+    <section class="search">
+        <h2 class="head">Baggage Detections</h2>
+        <div class="record">
+            <div class="head">
+                <div class="vid"><p>Camera ID</p></div>
+                <div class="filename"><p>Video Filename</p></div>
+                <div class="date"><p>Date</p></div>
+                <div class="time"><p>Time</p></div>
+            </div>
+            <div class="data">
+                <div class="rec">
+                    <div class="vid"><p>1</p></div>
+                    <div class="filename"><p>dasjasyuscgasjcgascdvvasefqevgegffaef.mp4</p></div>
+                    <div class="date"><p>1-7-2020</p></div>
+                    <div class="time"><p>12:15</p></div>
+                </div>
+                <div class="rec">
+                    <div class="vid"><p>1</p></div>
+                    <div class="filename"><p>dasjasyuscgasjcgascdvvasefqevgegffaef.mp4</p></div>
+                    <div class="date"><p>1-7-2020</p></div>
+                    <div class="time"><p>12:15</p></div>
+                </div>
+                <div class="rec">
+                    <div class="vid"><p>1</p></div>
+                    <div class="filename"><p>dasjasyuscgasjcgascdvvasefqevgegffaef.mp4</p></div>
+                    <div class="date"><p>1-7-2020</p></div>
+                    <div class="time"><p>12:15</p></div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="search-bar">
+            <div class="options">
+                <div class="option">
+                    <p class="label">Year</p>
+                    <input type="text" id="search-year" placeholder="All">
+                </div>
+                <div class="option">
+                    <p class="label">Month</p>
+                    <input type="text" id="search-month" placeholder="All">
+                </div>
+                <div class="option">
+                    <p class="label">Day</p>
+                    <input type="text" id="search-day" placeholder="All">
+                </div>
+                <div class="option">
+                    <p class="label">hour</p>
+                    <input type="text" id="search-hour" placeholder="All">
+                </div>
+                <div class="option">
+                    <p class="label">Minute</p>
+                    <input type="text" id="search-minute" placeholder="All">
+                </div>
+            </div>
+            <div class="submit">
+                <p>search</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="description">
+        <h2 class="head">Target Description</h2>
+    </section>
+
+    <section class="loader">
+        <div class="blck">
+            <img src="./images/loader.png" alt="">
+        </div>
+    </section>
+
+    <!-- JQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!-- Google Maps -->
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUZyaRzadmUqapOxbp1v_P-a-cZhnYdEY&callback=initMap"></script>
+
+    <script src="./../../config/script.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>

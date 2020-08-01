@@ -1,0 +1,241 @@
+body {
+    padding: 60px 100px;
+    background-color: rgb(236, 236, 236);
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    padding: 5px 30px;
+    background-color: #1a73e8;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    font-size: 0;
+}
+
+.nav .box {
+    display: inline-block;
+    overflow: hidden;
+    height: 100%;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.nav .box.right {
+    float: right;
+    margin-right: 10px;
+}
+
+.nav .box .head {
+    line-height: 30px;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.nav .box .new,
+.nav .box .refresh {
+    line-height: 30px;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.nav .box .new:hover,
+.nav .box .refresh:hover,
+.nav .box .head:hover {
+    color: rgb(218, 218, 218);
+}
+
+.select {
+    margin: 50px auto;
+    width: 400px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    padding: 20px;
+}
+
+.select.hide {
+    display: none;
+}
+
+.select h2 {
+    margin-bottom: 30px;
+    color: rgb(63,63,63);
+    font-size: 25px;
+}
+
+.select .side_label {
+    color: rgb(63,63,63);
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.select .side {
+    width: 100%;
+    height: 30px;
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+
+.select .img_label {
+    color: rgb(63,63,63);
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.select .img {
+    width: 100%;
+    height: 30px;
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+
+.select .submit {
+    margin: 20px auto;
+    height: 40px;
+    width:max-content;
+    cursor: pointer;
+    border: 2px solid #1a73e8;
+    padding: 10px 15px;
+    text-align: center;
+}
+
+.select .submit:hover {
+    background-color: #1a73e8;
+}
+
+.select .submit:hover p{
+    color: #fff;
+}
+
+.select .submit p {
+    color: #1a73e8;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+.colors {
+    width: 100%;
+    display: flex;
+}
+
+.colors.hide {
+    display: none;
+}
+
+.colors .image {
+    width: 300px;
+    padding: 20px 50px;
+    overflow: hidden;
+}
+
+.colors .image img {
+    width: 100%;
+}
+
+.colors .info {
+    width: max-content;
+    padding: 70px 50px;
+    overflow: hidden;
+}
+
+.colors .info .side {
+    color: rgb(63,63,63);
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.colors .info .feature {
+    color: rgb(63,63,63);
+    font-size: 25px;
+}
+
+.select_colors {
+    width: 100%;
+}
+
+.select_colors.hide {
+    display: none;
+}
+
+.select_colors .head {
+    color: rgb(63,63,63);
+    font-size: 25px;
+}
+
+.select_colors .clrs {
+    width: 100%;
+    padding: 20px;
+}
+
+.select_colors .clrs .clr {
+    display: inline-block;
+    width: 130px;
+    height: 60px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.select_colors .clrs .clr.selected {
+    box-shadow: 0 4px 15px rgba(0, 0, 0,.6);
+}
+
+/* .select_colors .clrs .clr:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+} */
+
+.select_colors .done {
+    margin: 0px auto;
+    width: max-content;
+    padding: 10px 25px;
+    background-color: #1a73e8;
+    cursor: pointer;
+}
+
+.select_colors .done p {
+    color: #fff;
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .6);
+    display: none;
+}
+
+.loader.show {
+    display: block;
+}
+
+.loader .blck {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    height: 100px;
+    width: 100px;
+    animation: rotate 1s infinite linear;
+}
+
+.loader .blck img {
+    width: 100%;
+}
+
+@keyframes rotate {
+    0% {
+        transform: translate(-50%, -50%) rotateZ(-10deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotateZ(360deg);
+    }
+}

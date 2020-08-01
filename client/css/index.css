@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@400&display=swap');
+
+.main {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 85%;
+    width: 70%;
+    background-color: #fff;
+    box-shadow: 0 20px 90px rgba(0,0,0,.5);
+    background: radial-gradient(rgba(42, 42, 42, 0.85), rgba(41, 41, 41, 0.9)) , url('./../images/bg.jpeg');
+    background-position: top;
+    background-size: cover;
+    padding: 10px;
+}
+
+.main .sih_logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 130px;
+}
+
+.main .sih_logo img {
+    width: 100%;
+}
+
+.main .content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 750px;
+}
+
+.main .content h2 {
+    text-align: center;
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 2px 4px rgba(255,255,255,.2);
+    font-family: 'Recursive', sans-serif;
+    margin-bottom: 20px;
+}
+
+.main .content p {
+    text-align: center;
+    font-size: 16px;
+    color: rgb(214, 214, 214);
+    margin-bottom: 35px;
+}
+
+.main .content .btns {
+    width: 100%;
+    text-align: center;
+}
+
+.main .content .btns .start,
+.main .content .btns .more {
+    display: inline-block;
+    width: 170px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-right: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.main .content .btns .start p{
+    color: rgb(63, 63, 63);
+    font-family: 'Recursive', sans-serif;
+    line-height: 50px;
+}
+
+.main .content .btns .more {
+    background-color: #6195ff;
+}
+
+.main .content .btns .more p {
+    color: #fff;
+    font-family: 'Recursive', sans-serif;
+    line-height: 50px;
+}

@@ -1,0 +1,256 @@
+body {
+    padding: 60px 100px;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    padding: 5px 30px;
+    background-color: #1a73e8;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    font-size: 0;
+}
+
+.nav .box {
+    display: inline-block;
+    overflow: hidden;
+    height: 100%;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.nav .box.right {
+    float: right;
+    margin-right: 10px;
+}
+
+.nav .box .head {
+    line-height: 30px;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.nav .box .new,
+.nav .box .refresh {
+    line-height: 30px;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.nav .box .new:hover,
+.nav .box .refresh:hover,
+.nav .box .head:hover {
+    color: rgb(218, 218, 218);
+}
+
+.cases {
+    width: 100%;
+}
+
+.cases .case-list {
+    width: 100%;
+}
+
+.cases .case-list .case {
+    width: 100%;
+    height: 30px;
+    font-size: 0;
+    text-align: center;
+    /* cursor: pointer; */
+}
+
+.cases .case-list .case:hover .name p{
+    text-decoration: underline;
+}
+
+.cases .case-list .case .name p:hover {
+    color: #1a73e8;
+}
+
+.cases .case-heading {
+    width: 100%;
+    height: 30px;
+    font-size: 0;
+    text-align: center;
+}
+
+.cases .case-heading .name {
+    display: inline-block;
+    width: 50%;
+    overflow: hidden;
+    height: 100%;
+    padding: 5px 20px;
+    text-align: left;
+    border-right: 1px solid rgb(173, 173, 173);
+    border-bottom: 1px solid rgb(173, 173, 173);
+}
+
+.cases .case-heading .name p {
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    line-height: 20px;
+}
+
+.cases .case-heading .caseID {
+    display: inline-block;
+    width: 50%;
+    overflow: hidden;
+    height: 100%;
+    padding: 5px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgb(173, 173, 173);
+}
+
+.cases .case-heading .caseID p {
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    line-height: 20px;
+}
+
+.cases .case-list .case .name {
+    display: inline-block;
+    width: 50%;
+    overflow: hidden;
+    height: 100%;
+    /* background-color: rgb(230, 230, 230); */
+    padding: 5px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgb(173, 173, 173);
+}
+
+.cases .case-list .case .name p {
+    font-size: 15px;
+    color: rgb(63, 63, 63);
+    line-height: 20px;
+    width: max-content;
+    cursor: pointer;
+}
+
+.cases .case-list .case .caseID {
+    display: inline-block;
+    width: 50%;
+    overflow: hidden;
+    height: 100%;
+    /* background-color: rgb(230, 230, 230); */
+    padding: 5px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgb(173, 173, 173);
+}
+
+.cases .case-list .case .caseID p {
+    font-size: 15px;
+    color: rgb(63, 63, 63);
+    line-height: 20px;
+}
+
+.cases .case-list .case:hover .name,
+.cases .case-list .case:hover .caseID {
+    background-color: rgb(235, 235, 235);
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .6);
+    display: none;
+}
+
+.loader.show {
+    display: block;
+}
+
+.loader .blck {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    height: 100px;
+    width: 100px;
+    animation: rotate 1s infinite linear;
+}
+
+.loader .blck img {
+    width: 100%;
+}
+
+@keyframes rotate {
+    0% {
+        transform: translate(-50%, -50%) rotateZ(-10deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotateZ(360deg);
+    }
+}
+
+.addCase {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    background-color: rgba(0, 0, 0, .6);
+    display: none;
+}
+
+.addCase.show {
+    display: block;
+}
+
+.addCase .box {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    width: 400px;
+    background-color: #fff;
+    box-shadow: 0 3px 15px rgba(0,0,0,.2);
+    padding: 20px;
+}
+
+.addCase .box h2 {
+    color: #1a73e8;
+    margin-bottom: 60px;
+    font-size: 25px;
+}
+
+.addCase .box .case {
+    width: 100%;
+    height: 40px;
+    padding: 5px 10px;
+}
+
+.addCase .box .submit {
+    display: block;
+    margin: 60px auto 0 auto;
+    width: 120px;
+    /* height: 40px; */
+    background-color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.addCase .box .submit p {
+    font-size: 16px;
+    color: #1a73e8;
+    line-height: 40px;
+    border: 2px solid #1a73e8;
+    font-weight: bold;
+}
+
+.addCase .box .submit:hover {
+    background-color: #1a73e8;
+}
+
+.addCase .box .submit:hover p {
+    color: #fff;
+}
+

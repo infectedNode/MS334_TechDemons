@@ -1,0 +1,295 @@
+body {
+    padding: 60px 100px;
+    background-color: rgb(236, 236, 236);
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    padding: 5px 30px;
+    background-color: #1a73e8;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    font-size: 0;
+    z-index: 100;
+}
+
+.nav .box {
+    display: inline-block;
+    overflow: hidden;
+    height: 100%;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.nav .box.right {
+    float: right;
+    margin-right: 10px;
+}
+
+.nav .box .head {
+    line-height: 30px;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.nav .box .new,
+.nav .box .refresh,
+.nav .box .case_name {
+    line-height: 30px;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.nav .box .new:hover,
+.nav .box .refresh:hover,
+.nav .box .head:hover,
+.nav .box .case_name:hover {
+    color: rgb(218, 218, 218);
+}
+
+.main {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    font-size: 0;
+}
+
+.main .target{
+    display: inline-block;
+    width: 500px;
+    padding: 20px;
+    overflow: hidden;
+    background-color: #fff;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    text-align: left;
+    min-height: 300px;
+    font-size: 0;
+}
+
+.main .target .head {
+    display: inline-block;
+    color: #000;
+    font-size: 22px;
+}
+
+.main .target .add {
+    display: inline-block;
+    overflow: hidden;
+    float: right;
+    /* width: 40px; */
+    height: 30px
+}
+
+.main .target .add .add_side {
+    color: #1a73e8;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.main .target .sides {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.main .target .side {
+    width: 100%;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+}
+
+.main .target .side .blck {
+    display: inline-block;
+    overflow: hidden;
+    width: 50%;
+    padding: 10px;
+}
+
+.main .target .side .blck img {
+    width: 100%;
+}
+
+.main .target .side .info {
+    display: inline-block;
+    width: 50%;
+    overflow: hidden;
+    padding: 10px;
+    float: right;
+}
+
+.main .target .side .info .name {
+    color: rgb(63, 63, 63);
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.main .target .side .info .feature {
+    color: rgb(63, 63, 63);
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.main .target .side .info .clrs {
+    color: rgb(63, 63, 63);
+    font-size: 16px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.main .target .side .info .colors {
+    font-size: 0;
+    text-align: left;
+    padding: 2px;
+}
+
+.main .target .side .info .colors .c {
+    display: inline-block;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+    background-color: #eee;
+    margin-right: 5px;
+    margin-bottom: 7px;
+}
+
+.main .analysis{
+    display: inline-block;
+    width: 500px;
+    padding: 20px;
+    overflow: hidden;
+    background-color: #fff;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    text-align: left;
+    min-height: 300px;
+    float: right;
+    position: relative;
+}
+
+.main .analysis .head {
+    display: inline-block;
+    color: #000;
+    font-size: 22px;
+    padding: 5px;
+}
+
+.main .analysis .analyse {
+    display: inline-block;
+    background-color: #1a73e8;
+    padding: 5px 10px;
+    border-radius: 5px;
+    float: right;
+    cursor: pointer;
+}
+
+.main .analysis .analyse.hide {
+    display: none;
+}
+
+.main .analysis .analyse p {
+    color: #fff;
+    font-size: 20px;
+}
+
+.main .analysis .load {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    transform-origin: center;
+    animation: rotate 1s infinite linear;
+    display: none;
+}
+
+.main .analysis .load.show {
+    display: block;
+}
+
+.main .analysis .load img {
+    width: 100%;
+}
+
+.main .analysis .status {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px 10px;
+    height: 20px;
+    display: none;
+    width: 100%;
+    text-align: center;
+}
+
+.main .analysis .status.show {
+    display: block;
+}
+
+.main .analysis .status p {
+    color: rgb(63, 63, 63);
+    font-size: 25px;
+}
+
+.main .analysis .view{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px 10px;
+    background-color: #1a73e8;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+.main .analysis .view.show {
+    display: block;
+}
+
+.main .analysis .view p {
+    color: #fff;
+    font-size: 22px;
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .6);
+    display: none;
+}
+
+.loader.show {
+    display: block;
+}
+
+.loader .blck {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    height: 100px;
+    width: 100px;
+    animation: rotate 1s infinite linear;
+}
+
+.loader .blck img {
+    width: 100%;
+}
+
+@keyframes rotate {
+    0% {
+        transform: translate(-50%, -50%) rotateZ(-10deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotateZ(360deg);
+    }
+}
