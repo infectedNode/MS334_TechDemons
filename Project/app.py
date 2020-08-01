@@ -67,6 +67,10 @@ def New_Case():
     }
     rec = client.db.cases.insert_one(data)
     caseID = rec.inserted_id
+    os.mkdir("./static/images/{}".format(caseID))
+    os.mkdir("./static/videos/{}".format(caseID))
+    os.mkdir("./static/videos/{}/input".format(caseID))
+    os.mkdir("./static/videos/{}/output".format(caseID))
     return jsonify({'name': name, 'caseID': str(caseID)}), 200
 
 # Get All Records
@@ -412,17 +416,20 @@ def Get_Target():
     if(case['analysis']['status'] != -1):
         return jsonify({"error": "analysis is already in progress"})
 
-    videos_path = "./static/videos/{}".format(caseID)
+    videos_path = "./static/videos/{}/input".format(caseID)
 
     # Check that the video folder exist or not
-    if(not os.path.isdir(videos_path)):
-        return jsonify({"error": "no videos found to analyze"})
+    # if(not os.path.isdir(videos_path)):
+        # return jsonify({"error": "no videos found to analyze"})
         # os.mkdir("./static/videos/{}".format(caseID))
 
     videos_filename = []
     for (dirpath, dirnames, filenames) in walk(videos_path):
         videos_filename.extend(filenames)
         break
+
+    if(len(videos_filename) <= 0):
+        return jsonify({"error": "no videos found to analyze"})
 
     target = case['target']
 
