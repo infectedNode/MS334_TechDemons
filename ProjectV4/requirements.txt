@@ -1,6 +1,6 @@
 tensorflow
 numpy
-opencv-python==3.4.2.16
+opencv-python
 lxml
 tqdm
 flask
