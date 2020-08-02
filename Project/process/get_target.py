@@ -131,12 +131,21 @@ def getTarget(videos_path, videos_filename, target, caseID, client):
     videos_count = 0
     total_videos = len(videos_filename)
 
+    status_update = {
+            "analysis": {
+                "status": 0
+            }
+        }
+
+    client.db.cases.update_one({'_id': ObjectId(caseID)}, {'$set': status_update})
+    print("status : " + str(status) + "%")
+
     for video in videos_filename:
 
         vid_path = videos_path + "/" + video
 
         vid_info = video.split(".")[0].split("_")
-
+        
         vid_id = int(vid_info[0])
         vid_time = vid_info[1]
         vid_location = vid_info[2]
