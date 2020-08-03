@@ -1,92 +1,109 @@
-var map;
+let map;
 
-function initMap() {
+// 28.463307, 77.492337
+// 28.465278, 77.492230
+// 28.463184, 77.489108
+// 28.460788, 77.490353
+// 28.462194, 77.487306
+
+function updateMap(data){
   map = new google.maps.Map(
-      document.getElementById('map'),
-      {center: new google.maps.LatLng(-33.91722, 151.23064), zoom: 16});
-
-  var iconBase =
-      'https://developers.google.com/maps/documentation/javascript/examples/full/images/';
-
-  var icons = {
-    parking: {
-      icon: iconBase + 'parking_lot_maps.png'
-    },
-    library: {
-      icon: iconBase + 'library_maps.png'
-    },
-    info: {
-      icon: iconBase + 'info-i_maps.png'
-    }
-  };
-
-  var features = [
+    document.getElementById('map'),
     {
-      position: new google.maps.LatLng(-33.91721, 151.22630),
-      type: 'info'
-    }, {
-      position: new google.maps.LatLng(-33.91539, 151.22820),
-      type: 'info'
-    }, {
-      position: new google.maps.LatLng(-33.91747, 151.22912),
-      type: 'info'
-    }, {
-      position: new google.maps.LatLng(-33.91910, 151.22907),
-      type: 'info'
-    }, {
-      position: new google.maps.LatLng(-33.91725, 151.23011),
-      type: 'info'
-    }, {
-      position: new google.maps.LatLng(-33.91872, 151.23089),
-      type: 'info'
-    }, {
-      position: new google.maps.LatLng(-33.91784, 151.23094),
-      type: 'info'
-    }, {
-      position: new google.maps.LatLng(-33.91682, 151.23149),
-      type: 'info'
-    }, {
-      position: new google.maps.LatLng(-33.91790, 151.23463),
-      type: 'info'
-    }, {
-      position: new google.maps.LatLng(-33.91666, 151.23468),
-      type: 'info'
-    }, {
-      position: new google.maps.LatLng(-33.916988, 151.233640),
-      type: 'info'
-    }, {
-      position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
-      type: 'parking'
-    }, {
-      position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
-      type: 'parking'
-    }, {
-      position: new google.maps.LatLng(-33.91665018901448, 151.2282474695587),
-      type: 'parking'
-    }, {
-      position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),
-      type: 'parking'
-    }, {
-      position: new google.maps.LatLng(-33.91608037421864, 151.23288232673644),
-      type: 'parking'
-    }, {
-      position: new google.maps.LatLng(-33.91851096391805, 151.2344058214569),
-      type: 'parking'
-    }, {
-      position: new google.maps.LatLng(-33.91818154739766, 151.2346203981781),
-      type: 'parking'
-    }, {
-      position: new google.maps.LatLng(-33.91727341958453, 151.23348314155578),
-      type: 'library'
+      center: new google.maps.LatLng(28.4623779,77.4898183), 
+      zoom: 16
     }
-  ];
+  );
+  
+  let markerImage = new google.maps.MarkerImage(
+    'https://cdn0.iconfinder.com/data/icons/electronics-95/64/155-512.png',
+    null, /* size is determined at runtime */
+    null, /* origin is 0,0 */
+    null, /* anchor is bottom center of the scaled image */
+    new google.maps.Size(32, 37)
+  )
 
   // Create markers.
-  for (var i = 0; i < features.length; i++) {
-    var marker = new google.maps.Marker({
-      position: features[i].position,
-      icon: icons[features[i].type].icon,
+  for (let i = 0; i < data.length; i++) {
+    let marker = new google.maps.Marker({
+      position: {lat: data[i].lat, lng: data[i].long},
+      icon: markerImage,
+      title: `Camera ID : ${data[i].id} \nFilename : ${data[i].filename} \n(${data[i].lat}, ${data[i].long})`,
       map: map
     });
   };
+
 }
+
+let videoID = null
+let record = null
+
+function updateAnalysis(caseID) {
+    const URL = baseURL + "/case"
+
+    $('.loader').addClass('show');
+
+    $.ajax({
+      url: URL,
+      type: 'GET',
+      beforeSend: function(request) {
+          request.setRequestHeader("caseID", caseID);
+      },
+      success: function(data){
+        if(data.error){
+          $('.loader').removeClass('show')
+          console.log(data.error);
+        } else {
+          analysis = data.case.analysis;
+          videoID = analysis.videoID
+          record = analysis.record
+          updateMap(videoID)
+          updateRecord(record, videoID)
+          console.log(analysis)
+          $('.loader').removeClass('show')
+        } 
+      },
+      error: function(err) {
+          $('.loader').removeClass('show')
+          console.log("error" + err);
+      }
+  });
+}
+
+function updateRecord(record, videoID) {
+  record.forEach(ele => {
+    let vid = ele.vid;
+    let filename;
+    let link;
+    for(let i=0; i<videoID.length; i++){
+      if(vid == videoID[i].id){
+        filename = videoID[i].filename;
+        link = videoID[i].link;
+        break;
+      }
+    }
+    ele.detections.forEach(det => {
+      $('.search .record .data').append(`
+        <div class="rec">
+            <div class="vid"><p>${vid}</p></div>
+            <div class="filename"><p>${filename}</p></div>
+            <div class="date"><p>${det.day}-${det.month}-${det.year}</p></div>
+            <div class="time"><p>${det.hour}:${det.minute}</p></div>
+            <div class="down"><p><a href="${link}">Click</a></p></div>
+        </div>
+      `)
+    })
+    
+  });
+}
+
+$(document).ready(function(){
+  let caseID = localStorage.getItem('caseID');
+  if(caseID) {
+      updateAnalysis(caseID);
+  } else {
+      console.log('CaseID not found');
+      let url = "/cases";
+      window.location.href = url; 
+  }
+});

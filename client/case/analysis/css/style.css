@@ -69,6 +69,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: grey;
+    box-shadow: 0 3px 6px rgba(0,0,0,.2);
 }
 
 .search {
@@ -104,7 +105,7 @@ body {
 
 .search .record .head .filename {
     display: inline-block;
-    width: 60%;
+    width: 45%;
     height: 100%;
     overflow: hidden;
     border-right: 1px solid rgb(136, 136, 136);
@@ -123,12 +124,21 @@ body {
     width: 10%;
     height: 100%;
     overflow: hidden;
+    border-right: 1px solid rgb(136, 136, 136);
+}
+
+.search .record .head .down {
+    display: inline-block;
+    width: 15%;
+    height: 100%;
+    overflow: hidden;
 }
 
 .search .record .head .vid p,
 .search .record .head .filename p,
 .search .record .head .date p,
-.search .record .head .time p {
+.search .record .head .time p,
+.search .record .head .down p {
     font-size: 18px;
     color: #000;
     line-height: 40px;
@@ -165,7 +175,7 @@ body {
 
 .search .record .data .rec .filename {
     display: inline-block;
-    width: 60%;
+    width: 45%;
     height: 100%;
     overflow: hidden;
     border-right: 1px solid rgb(136, 136, 136);
@@ -184,15 +194,38 @@ body {
     width: 10%;
     height: 100%;
     overflow: hidden;
+    border-right: 1px solid rgb(136, 136, 136);
+}
+
+.search .record .data .rec .down {
+    display: inline-block;
+    width: 15%;
+    height: 100%;
+    overflow: hidden;
 }
 
 .search .record .data .rec .vid p,
 .search .record .data .rec .filename p,
 .search .record .data .rec .date p,
-.search .record .data .rec .time p {
+.search .record .data .rec .time p,
+.search .record .data .rec .down p {
     font-size: 18px;
     color: rgb(63, 63, 63);
     line-height: 30px;
+}
+
+.search .record .data .rec .down p {
+    cursor: pointer;
+}
+
+.search .record .data .rec .down p a {
+    text-decoration: none;
+    font-size: 18px;
+    color: rgb(63, 63, 63);
+}
+
+.search .record .data .rec .down p a:hover{
+    color: #1a73e8;
 }
 
 .search .search-bar {
