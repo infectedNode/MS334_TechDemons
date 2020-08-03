@@ -62,7 +62,7 @@ def flannbased(img, sides, caseID):
                 success = 0
         except:
             success = 0
-            print("SIFT Error")     
+            #print("SIFT Error")     
         res = {
             "side": side,
             "success": success
