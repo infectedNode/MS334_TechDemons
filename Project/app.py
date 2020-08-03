@@ -348,7 +348,7 @@ def Set_Color():
 
     return jsonify({"message": "success", "res": updated_target})
 
-# Test target
+# Test target (=> to test the image frame for baggage detection)
 @app.route('/testtarget', methods=['POST'])
 def Test_Target():
     try:
