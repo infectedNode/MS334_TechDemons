@@ -145,25 +145,25 @@ def yolo_nms(yolo_feats, yolo_max_boxes, yolo_iou_threshold, yolo_score_threshol
     for stage_feats in yolo_feats:
         num_boxes = (
             stage_feats[0].shape[1] * stage_feats[0].shape[2] * stage_feats[0].shape[3]
-        )  # num_anchors * grid_x * grid_y
+        )  
         bbox_per_stage.append(
             tf.reshape(
                 stage_feats[0],
                 (tf.shape(stage_feats[0])[0], num_boxes, stage_feats[0].shape[-1]),
             )
-        )  # [None,num_boxes,4]
+        )  
         objectness_per_stage.append(
             tf.reshape(
                 stage_feats[1],
                 (tf.shape(stage_feats[1])[0], num_boxes, stage_feats[1].shape[-1]),
             )
-        )  # [None,num_boxes,1]
+        )  
         class_probs_per_stage.append(
             tf.reshape(
                 stage_feats[2],
                 (tf.shape(stage_feats[2])[0], num_boxes, stage_feats[2].shape[-1]),
             )
-        )  # [None,num_boxes,num_classes]
+        )  
 
     bbox = tf.concat(bbox_per_stage, axis=1)
     objectness = tf.concat(objectness_per_stage, axis=1)

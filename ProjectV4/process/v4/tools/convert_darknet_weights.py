@@ -1,8 +1,3 @@
-"""
-Script to convert yolov4.weights file from AlexeyAB/darknet to tensorflow weights.
-
-Initial implementation comes from https://github.com/zzh8829/yolov3-tf2
-"""
 from pathlib import Path
 
 import click
@@ -14,9 +9,6 @@ from tf2_yolov4.tools.weights import load_darknet_weights_in_yolo
 
 INPUT_SHAPE = (416, 416, 3)
 NUM_CLASSES = 80
-
-
-# pylint: disable=too-many-locals
 @click.command()
 @click.argument("darknet-weights-path", type=click.Path(exists=True))
 @click.option(
@@ -40,7 +32,6 @@ def convert_darknet_weights(darknet_weights_path, output_weights_path, num_class
     model = YOLOv4(
         input_shape=INPUT_SHAPE, num_classes=num_classes, anchors=YOLOV4_ANCHORS
     )
-    # pylint: disable=E1101
     model.predict(np.random.random((1, *INPUT_SHAPE)))
 
     model = load_darknet_weights_in_yolo(model, darknet_weights_path)

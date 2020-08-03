@@ -36,40 +36,7 @@ def hsv(clr):
     v = mx*100
 
     return [int(h), int(s), int(v)]
-def flannbased(img, sides, caseID):
-    query_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    outcome = []
-    for side in sides:
-        image_path = "./static/images/{}/{}.jpg".format(caseID,side)
-        train_img = cv2.imread(image_path)
-        train_img = cv2.cvtColor(train_img, cv2.COLOR_BGR2GRAY)
-        sift = cv2.xfeatures2d.SIFT_create()
-        try:
-            kp1, des1 = sift.detectAndCompute(train_img, none)
-            kp2, des2 = sift.detectAndCompute(query_img, none)
-            FLANN_INDEX_KDTREE = 0
-            index_params = dict(algorithm=FLANN_INDEX_KDTREE, trees=5)
-            search_params = dict(checks=50)
-            if(des2 is not None):
-                flann = cv2.FlannBasedMatcher(index_params, search_params)
-                matches = flann.knnMatch(des1, des2, k=2)
-                good = []
-                for m, n in matches:
-                    if (m.distance < 0.7 * n.distance):
-                        good.append(m)
-                success = (len(good)/len(matches)) *100
-            else:
-                success = 0
-        except:
-            success = 0
-            print("SIFT Error")     
-        res = {
-            "side": side,
-            "success": success
-        }
-        outcome.append(res)
-    return outcome
-'''
+
 def orb_feature(img, sides, caseID):
     query_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  
     
@@ -107,7 +74,7 @@ def orb_feature(img, sides, caseID):
         outcome.append(res)
 
     return outcome    
-'''
+
 def color(img, sides):
 
     image = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -355,9 +322,7 @@ def getTarget(videos_path, videos_filename, target, caseID, client):
             bag_score = []   
 
             for bimg in bags_img:
-                if(bimg is None):
-                    continue
-                img_orb = flannbased(bimg, sides, caseID)
+                img_orb = orb_feature(bimg, sides, caseID)
                 img_color = color(bimg, target['sides'])
 
                 max_score = 0.0

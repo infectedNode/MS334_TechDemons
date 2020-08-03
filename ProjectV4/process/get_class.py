@@ -1,5 +1,5 @@
 import tensorflow as tf
-from process.yolov3_tf2.dataset import transform_images
+from process.v4.dataset import transform_images
 
 from process.init import yolo2, class_names2
 size = 416
@@ -15,7 +15,7 @@ def getClass(image=None):
     count = 0
   
     for i in range(nums[0]):
-        temp_class = class_names[int(classes[0][i])]
+        temp_class = class_names2[int(classes[0][i])]
         if (temp_class=="suitcase" or temp_class=="handbag" or temp_class=="backpack"):
             count += 1
             class_name = temp_class    

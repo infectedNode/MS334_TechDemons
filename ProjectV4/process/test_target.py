@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 import tensorflow as tf
-from process.yolov3_tf2.dataset import transform_images
-from process.yolov3_tf2.utils import draw_outputs, draw_output
+from process.v4.dataset import transform_images
+from process.v4.utils import draw_outputs, draw_output
 import os
 
 from sklearn.cluster import KMeans
@@ -115,7 +115,7 @@ def color(img, sides):
     return outcome
 
 
-def testTarget(image, target, caseID):
+def testTarget(image, target_class, target, caseID):
     raw_img = tf.image.decode_image(open(image, 'rb').read(), channels=3)
     img = tf.expand_dims(raw_img, 0)
     img = transform_images(img, size)
@@ -124,13 +124,15 @@ def testTarget(image, target, caseID):
 
     bags = []
     for i in range(nums[0]):
-        box = []
-        [box.append(float(i)) for i in np.array(boxes[0][i])]
-        bag = {
-            "confidence": float(np.array(scores[0][i])),
-            "box": box
-        }
-        bags.append(bag)
+        temp_class = class_names[int(classes[0][i])]
+        if (temp_class=="suitcase" or temp_class=="handbag" or temp_class=="backpack" or temp_class=="bag"):
+            box = []
+            [box.append(float(i)) for i in np.array(boxes[0][i])]
+            bag = {
+                "confidence": float(np.array(scores[0][i])),
+                "box": box
+            }
+            bags.append(bag) 
     
     img = cv2.cvtColor(raw_img.numpy(), cv2.COLOR_RGB2BGR)
     h = img.shape[0]

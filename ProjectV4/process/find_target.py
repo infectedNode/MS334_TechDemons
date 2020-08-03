@@ -3,8 +3,8 @@ from absl import app, logging
 import cv2
 import numpy as np
 import tensorflow as tf
-from process.yolov3_tf2.dataset import transform_images, load_tfrecord_dataset
-from process.yolov3_tf2.utils import draw_outputs
+from process.v4.dataset import transform_images, load_tfrecord_dataset
+from process.v4.utils import draw_outputs
 import os
 
 from process.init import yolo, class_names
@@ -23,9 +23,23 @@ def findTarget(image=None, isID=0):
     if(isID > 0):
         for i in range(nums[0]):
             temp_class = class_names[int(classes[0][i])]
-            count += 1
+            if (temp_class=="suitcase" or temp_class=="handbag" or temp_class=="backpack"):
+                count += 1
 
-            if(count == isID):
+                if(count == isID):
+                    box = []
+                    [box.append(float(i)) for i in np.array(boxes[0][i])]
+                    bag = {
+                        "class_name": temp_class,
+                        "confidence": float(np.array(scores[0][i])),
+                        "box": box
+                    }
+                    bags.append(bag) 
+    else:       
+        for i in range(nums[0]):
+            temp_class = class_names[int(classes[0][i])]
+            if (temp_class=="suitcase" or temp_class=="handbag" or temp_class=="backpack"):
+                count += 1
                 box = []
                 [box.append(float(i)) for i in np.array(boxes[0][i])]
                 bag = {
@@ -34,18 +48,6 @@ def findTarget(image=None, isID=0):
                     "box": box
                 }
                 bags.append(bag)
-    else:       
-        for i in range(nums[0]):
-            temp_class = class_names[int(classes[0][i])]
-            count += 1
-            box = []
-            [box.append(float(i)) for i in np.array(boxes[0][i])]
-            bag = {
-                "class_name": temp_class,
-                "confidence": float(np.array(scores[0][i])),
-                "box": box
-            }
-            bags.append(bag)
     
     img = cv2.cvtColor(raw_img.numpy(), cv2.COLOR_RGB2BGR)
 
