@@ -12,3 +12,4 @@ flask_cors
 tensorflow-addons
 tf2-yolov4
 Keras
+gdown
